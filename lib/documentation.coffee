@@ -100,6 +100,12 @@ module.exports = class Documentation
           reference: see[1]
           label: see[2]
 
+      else if fixme = /^@fixme\s+([^\s]+)(?:\s+(.+))?/i.exec line
+        @fixme = fixme[1]
+
+      else if async = /^@async\s+([^\s]+)(?:\s+(.+))?/i.exec line
+        @async = true
+
       else if author = /^@author\s+(.+)/i.exec line
         @authors ?= []
         @authors.push author[1] || ''
@@ -229,6 +235,9 @@ module.exports = class Documentation
       summary: @summary
       notes: @notes
       see: @see
+ 
+      fixme: @fixme
+      async: @async
 
       namespace: @namespace
       abstract: @abstract
