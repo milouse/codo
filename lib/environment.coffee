@@ -144,6 +144,9 @@ module.exports = class Environment
   reference: (needle, context='') ->
     needle = needle.split(' ')[0]
 
+    if needle.match /Array<(.*)>/
+      needle = needle.match(/Array<(.*)>/)[1]
+
     if @references[needle]
       @references[needle]
     else if @references[context+needle]
