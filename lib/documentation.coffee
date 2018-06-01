@@ -2,7 +2,7 @@ module.exports = class Documentation
 
   constructor: (comment) ->
     @parseTags(comment)
-  
+
   # Parse the given lines and adds the result
   # to the result object.
   #
@@ -48,13 +48,13 @@ module.exports = class Documentation
           description: throws[1]
 
       else if param = /^@param\s+[\[\{](.+?)[\]}]\s+\[([^\]]+)](?:\s+(.+))?/i.exec line
-        @params ?= []
         if paramNameVal = /^([^ ]+)\s*=\s*([^ ]+)/.exec param[2]
           paramName = paramNameVal[1]
           defValue = paramNameVal[2]
         else
           defValue = null
           paramName = param[2]
+        @params ?= []
         @params.push
           type: param[1]
           name: paramName
@@ -145,7 +145,7 @@ module.exports = class Documentation
 
       else if /^@public/.exec line
         @public = true
-      
+
       else if since = /^@since\s+(.+)/i.exec line
         @since = since[1] || ''
 
@@ -235,7 +235,7 @@ module.exports = class Documentation
       summary: @summary
       notes: @notes
       see: @see
- 
+      todos: @todos
       fixme: @fixme
       async: @async
 
@@ -249,14 +249,13 @@ module.exports = class Documentation
 
       authors: @authors
       copyright: @copyright
-      todos: @todos
 
       includes: @includes
       extends: @extends
       concerns: @concerns
-      
+
       examples: @examples
-      
+
       params: @params
       options: @options
       returns: @returns
