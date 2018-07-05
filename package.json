@@ -12,9 +12,12 @@
     },
     {
       "name": "Boris Staal"
+    },
+    {
+      "name": "Étienne Deparis"
     }
   ],
-  "version": "2.1.2",
+  "version": "2.1.3",
   "license": "MIT",
   "engines": {
     "node": ">=0.9.0"
