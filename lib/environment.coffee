@@ -38,7 +38,28 @@ module.exports = class Environment
 
     @needles    = []
     @entities   = []
-    @references = {}
+    @references =
+      String:
+        name: 'String'
+        refSource: 'dev_mo_js_global'
+      Object:
+        name: 'Object'
+        refSource: 'dev_mo_js_global'
+      Boolean:
+        name: 'Boolean'
+        refSource: 'dev_mo_js_global'
+      Array:
+        name: 'Array'
+        refSource: 'dev_mo_js_global'
+      HTMLElement:
+        name: 'HTMLElement'
+        refSource: 'dev_mo_web_api'
+      Node:
+        name: 'Node'
+        refSource: 'dev_mo_web_api'
+      NodeList:
+        name: 'NodeList'
+        refSource: 'dev_mo_web_api'
     @parsed     = {}
 
     @needles.push Class

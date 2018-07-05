@@ -124,7 +124,9 @@ describe 'Environment', ->
       expected.forEach normalizePathsInObject
       expected = JSON.stringify expected, null, 2
       expect(actual).toEqual expected
-      expect(Object.keys environment.references).toEqual [ 
+      expect(Object.keys environment.references).toEqual [
+        'String', 'Object', 'Boolean', 'Array',
+        'HTMLElement', 'Node', 'NodeList',
         'spec/_templates/environment/class.coffee',
         'spec/_templates/environment/mixin.coffee',
         'Fluffy', 'LookAndFeel', 'LookAndFeel~feel', 'LookAndFeel~look'

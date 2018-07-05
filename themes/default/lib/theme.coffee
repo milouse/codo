@@ -65,6 +65,13 @@ module.exports = class Theme.Theme
       "#{entity.name}-variable"
 
   pathFor: (kind, entity, prefix='') ->
+    if kind.name in ['String', 'Object', 'Boolean', 'Array',
+                     'HTMLElement', 'Node', 'NodeList']
+      uri_types =
+        dev_mo_js_global: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/'
+        dev_mo_web_api: 'https://developer.mozilla.org/en-US/docs/Web/API/'
+      return uri_types[kind.refSource] + kind.name
+
     unless entity?
       entity = kind
       kind = 'class'  if entity instanceof Codo.Entities.Class
