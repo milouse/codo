@@ -2,6 +2,12 @@
   %tt<>
     %a{href: @reference(@type, @path)}<>
       = @type
+- else if @awareOfArray(@type)
+  %tt<>
+    Array<
+    %a{href: @reference(@type, @path)}<>
+      = @subtypeLabel(@type)
+    >
 - else
   %tt<>
     = @type

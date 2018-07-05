@@ -43,8 +43,18 @@ module.exports = class Theme.Theme
   awareOf: (needle) ->
     @environment.references[needle]?
 
+  awareOfArray: (needle) ->
+    nm = needle.match /Array<(.*)>/
+    return false unless nm
+    @environment.references[nm[1]]?
+
   reference: (needle, prefix) ->
     @pathFor(@environment.reference(needle), undefined, prefix)
+
+  subtypeLabel: (needle) ->
+    nm = needle.match /Array<(.*)>/
+    return nm[1] if nm
+    needle
 
   anchorFor: (entity) ->
     if entity instanceof Codo.Meta.Method
@@ -106,15 +116,17 @@ module.exports = class Theme.Theme
 
   render: (source, destination, context={}) ->
     globalContext =
-      environment: @environment
-      path:        @calculatePath(destination)
-      strftime:    strftime
-      anchorFor:   @anchorFor
-      pathFor:     @pathFor
-      reference:   @reference
-      awareOf:     @awareOf
-      activate:    => @activate(arguments...)
-      render:      (template, context={}) =>
+      environment:  @environment
+      path:         @calculatePath(destination)
+      strftime:     strftime
+      anchorFor:    @anchorFor
+      pathFor:      @pathFor
+      reference:    @reference
+      subtypeLabel: @subtypeLabel
+      awareOf:      @awareOf
+      awareOfArray: @awareOfArray
+      activate:     => @activate(arguments...)
+      render:       (template, context={}) =>
         context[key] = value for key, value of globalContext
         @templater.render template, context
 
