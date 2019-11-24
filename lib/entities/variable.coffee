@@ -12,6 +12,7 @@ module.exports = class Entities.Variable extends Entity
     !node.documentation?.property && !node.documentation?.mixin && super(node)
 
   constructor: (@environment, @file, @node) ->
+    super()
     [@name, @selfish] = @fetchName()
 
     @constant = /^[A-Z_-]*$/.test @name

@@ -1,4 +1,4 @@
-CoffeeScript = require 'coffee-script'
+CoffeeScript = require 'coffeescript'
 Meta         = require '../_meta'
 
 module.exports = class Meta.Parameter

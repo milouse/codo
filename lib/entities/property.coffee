@@ -30,11 +30,12 @@ module.exports = class Entities.Property extends Entity
 
   @is: (node) ->
     super(node) && (
-      node.documentation?.property || 
+      node.documentation?.property ||
       (node.constructor.name == 'Call' && node.variable?.base?.value != 'this')
     )
 
   constructor: (@environment, @file, @node) ->
+    super()
     if @node.constructor.name == 'Call' && @node.variable?.base?.value != 'this'
       @name   = @node.args[0].base.properties[0].variable.base.value
       @setter = @node.variable.base.value == 'set'

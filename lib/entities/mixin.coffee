@@ -23,6 +23,7 @@ module.exports = class Entities.Mixin extends Entity
     )
 
   constructor: (@environment, @file, @node) ->
+    super()
     [@name, @selfish] = @fetchName()
 
     @documentation = @node.documentation
@@ -50,7 +51,7 @@ module.exports = class Entities.Mixin extends Entity
 
 
   linkify: ->
-    super
+    super()
 
     @grabMethods @methods, @node
 

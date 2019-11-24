@@ -10,6 +10,7 @@ module.exports = class Entities.Method extends Entity
     node.constructor.name == 'Assign' && node.value?.constructor.name == 'Code'
 
   constructor: (@environment, @file, @node) ->
+    super()
     Winston.info "Creating new Method Entity" if @environment.options.debug
 
     @name = [@node.variable.base.value]

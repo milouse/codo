@@ -4,7 +4,7 @@ mkdirp  = require 'mkdirp'
 _       = require 'underscore'
 hamlc   = require 'haml-coffee'
 walkdir = require 'walkdir'
-Mincer  = require 'mincer'
+#Mincer  = require 'mincer'
 Nib     = require 'nib'
 Theme   = require './_theme'
 
@@ -14,8 +14,8 @@ module.exports = class Theme.Templater
     Path.join(__dirname, '..', subject)
 
   constructor: (@destination) ->
-    Mincer.StylusEngine.configure (stylus) => stylus.use Nib()
-    Mincer.CoffeeEngine.configure bare: false
+    #Mincer.StylusEngine.configure (stylus) => stylus.use Nib()
+    #Mincer.CoffeeEngine.configure bare: false
 
     @JST = []
 
@@ -34,15 +34,15 @@ module.exports = class Theme.Templater
           escapeAttributes: false
 
   compileAsset: (from, to=false) ->
-    mincer = new Mincer.Environment()
-    mincer.appendPath @sourceOf('assets')
+    #mincer = new Mincer.Environment()
+    #mincer.appendPath @sourceOf('assets')
 
-    asset = mincer.findAsset(from)
+    #asset = mincer.findAsset(from)
     file  = Path.join(@destination, to || from)
     dir   = Path.dirname(file)
 
     mkdirp.sync(dir)
-    FS.writeFileSync(file, asset.buffer)
+    #FS.writeFileSync(file, asset.buffer)
 
   # Render the given template with the context and the
   # global context object merged as template data. Writes

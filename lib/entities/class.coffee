@@ -14,6 +14,7 @@ module.exports = class Entities.Class extends Entity
     node.constructor.name is 'Class' && node.variable?.base?.value?
 
   constructor: (@environment, @file, @node) ->
+    super()
     [@selfish, @container] = @determineContainment(@node.variable)
 
     @parent        = @fetchParent(@node.parent) if @node.parent
@@ -55,7 +56,7 @@ module.exports = class Entities.Class extends Entity
   fetchName: (source, selfish, container) ->
     name = []
 
-    # Nested class definition inherits 
+    # Nested class definition inherits
     # the namespace from the containing class
     name.push container.name if container
 
@@ -71,7 +72,7 @@ module.exports = class Entities.Class extends Entity
     name.join('.')
 
   linkify: ->
-    super
+    super()
 
     for node in @node.body.expressions
 
@@ -90,14 +91,14 @@ module.exports = class Entities.Class extends Entity
   linkifyAssign: (node) ->
     for entity in node.entities when entity.selfish
       # class Foo
-      #   @foo = ->            
+      #   @foo = ->
       if entity instanceof Method
         entity.kind = 'static'
         @methods.push entity
 
       # class Foo
       #   @foo = 'test'
-      if entity instanceof Variable 
+      if entity instanceof Variable
         entity.kind = 'static'
         @variables.push entity
 
@@ -113,7 +114,7 @@ module.exports = class Entities.Class extends Entity
 
         # class Foo
         #   foo: 'test'
-        if entity instanceof Variable 
+        if entity instanceof Variable
           entity.kind = if entity.selfish then 'static' else 'dynamic'
           @variables.push entity
 

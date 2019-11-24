@@ -24,8 +24,8 @@ module.exports = class Theme.Theme
     @referencer = new Codo.Tools.Referencer(@environment)
 
   compile: ->
-    @templater.compileAsset('javascript/application.js')
-    @templater.compileAsset('stylesheets/application.css')
+    #@templater.compileAsset('javascript/application.js')
+    #@templater.compileAsset('stylesheets/application.css')
 
     @renderAlphabeticalIndex()
     @render 'method_list', 'method_list.html'
@@ -234,6 +234,7 @@ module.exports = class Theme.Theme
         breadcrumbs: @generateBreadcrumbs(extra.name.split '/')
 
   renderFuzzySearchData: ->
+    return
     search = []
     everything = [
       @environment.visibleClasses(),

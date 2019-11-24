@@ -12,6 +12,7 @@ module.exports = class Entities.File extends Entity
   @Name: "File"
 
   constructor: (@environment, @path, @node) ->
+    super()
     @file      = @
     @name      = Path.relative(@environment.options.basedir, @path)
     @basename  = Path.basename(@name)
@@ -26,7 +27,7 @@ module.exports = class Entities.File extends Entity
       Winston.info " path: " + @path
 
   linkify: ->
-    super
+    super()
 
     for node in @node.expressions
       # Checking direct members
